@@ -10,6 +10,34 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
  */
+
+body {
+  font-family: Roboto, sans-serif;
+  color: #27336b;
+}
+
+.navbar-brand img {
+  width: 227px;
+  height: 75px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #27336b;
+  font-size: 18px;
+  transition: all .2s linear;
+  margin: 22.5px;
+}
+.navbar-light .navbar-nav .nav-link:hover {
+  color: #ff3d00;
+}
+
+.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
+
+}
+footer {
+  padding: 20px;
+}
+.bg-primary {
+  background-color: #27336b !important;
+}
