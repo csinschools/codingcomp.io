@@ -1,10 +1,9 @@
 <h1>Submissions</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
-      <th>Url</th>
       <th>Author</th>
       <th>School</th>
       <th>Public</th>
@@ -17,10 +16,9 @@
     <% @submissions.each do |submission| %>
       <tr>
         <td><%= submission.name %></td>
-        <td><%= submission.url %></td>
         <td><%= submission.author %></td>
         <td><%= submission.school %></td>
-        <td><%= submission.public %></td>
+        <td><%= "YES" if submission.public %></td>
         <td><%= submission.submitter_email %></td>
         <td><%= link_to 'Show', submission %></td>
         <td><%= link_to 'Edit', edit_submission_path(submission) %></td>

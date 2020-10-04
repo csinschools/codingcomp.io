@@ -1,22 +1,31 @@
 <h1>Look at all these entries so far!</h1>
 
-<table>
+<table class="table">
   <thead>
-    <tr>
-      <th>Name</th>
-      <th>Author</th>
-      <th>School</th>
-    </tr>
+  <tr>
+    <th>Name</th>
+    <th>Author</th>
+    <th>School</th>
+  </tr>
   </thead>
   <tbody>
-    <% @entries.each do |submission| %>
+  <% @entries.each do |submission| %>
+    <tr>
       <td><%= link_to submission.name, public_entry_path(submission) %></td>
       <td><%= submission.author %></td>
       <td><%= submission.school %></td>
-    <% end %>
+    </tr>
+  <% end %>
   </tbody>
   <tfoot>
-
+  <tr>
+    <td colspan="42">
+      <ul class="pagination justify-content-center">
+        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+      </ul>
+    </td>
   </tfoot>
 </table>
-<%  %>
+<% %>
