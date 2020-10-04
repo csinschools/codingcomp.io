@@ -23,6 +23,16 @@
       <li class="nav-item">
         <a class="nav-link" href="/faq">Faq</a>
       </li>
+
+      <% if current_user %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="user-actions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.email %></a>
+          <div class="dropdown-menu" aria-labelledby="user-actions">
+            <%= link_to "Other stuff coming soon!", "javascript:alert('Keen, ain\\'t ya?!')", class: "dropdown-item" %>
+            <%= link_to "Logout", destroy_user_session_path, class: "dropdown-item", method: :delete %>
+          </div>
+        </li>
+      <% end %>
     </ul>
   </div>
 </nav>

@@ -1,24 +1,18 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Updating the app
 
-Things you may want to cover:
+The app is currently running on Heroku.  To push the latest version up, run
 
-* Ruby version
+`git push heroku main`
 
-* System dependencies
+## Creating a user
 
-* Configuration
+To avoid spam signups and complexity, management is done manually via the Rails console.
 
-* Database creation
+password = SecureRandom.alphanumeric
+User.create!(email: 'test@example.com', password: password, password_confirmation: password)
 
-* Database initialization
+To get to the rails console on the Heroku production environment: 
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+`heroku run rails console` 

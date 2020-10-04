@@ -1,0 +1,10 @@
+<% flash.each do |type, msg| %>
+  <% bootstrap_type = { "alert" => "danger", "notice" => "success" }[type] || type %>
+
+  <div class="alert alert-<%= bootstrap_type %> alert-dismissible fade show" role="alert">
+    <%= msg %>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+<% end %>
