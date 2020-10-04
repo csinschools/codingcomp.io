@@ -32,14 +32,16 @@
   </div>
 
   <div class="field">
-    <%= form.label :public %>
-    <%= form.check_box :public %>
-  </div>
-
-  <div class="field">
     <%= form.label :submitter_email %>
     <%= form.text_area :submitter_email %>
   </div>
+
+  <% if user_signed_in? %>
+    <div class="field">
+      <%= form.label :public %>
+      <%= form.check_box :public %>
+    </div>
+  <% end %>
 
   <div class="actions">
     <%= form.submit %>

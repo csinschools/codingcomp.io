@@ -16,7 +16,7 @@ class PagesController < ApplicationController
   end
 
   def entries
-    @entries = Submission.all
+    @entries = Submission.where(public: true)
   end
 
   def entry

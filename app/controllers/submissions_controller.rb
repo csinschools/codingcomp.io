@@ -29,7 +29,13 @@ class SubmissionsController < ApplicationController
 
     respond_to do |format|
       if @submission.save
-        format.html { redirect_to @submission, notice: 'Submission was successfully created.' }
+        format.html do
+          if user_signed_in?
+            redirect_to @submission, notice: 'Submission was successfully created.'
+          else
+            redirect_to new_submission_path, notice: "Submission was successfully created.  We'll email you once it's approved (or if we need more info)."
+          end
+        end
         format.json { render :show, status: :created, location: @submission }
       else
         format.html { render :new }
@@ -70,6 +76,10 @@ class SubmissionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def submission_params
-      params.require(:submission).permit(:name, :url, :author, :school, :public, :submitter_email)
+      allowed_params = [:name, :url, :author, :school, :public, :submitter_email]
+      if user_signed_in?
+        allowed_params += [:public]
+      end
+      params.require(:submission).permit(allowed_params)
     end
 end
