@@ -10,4 +10,9 @@
 
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  <link rel="icon" href="<%= image_path("favicon.png") %>" sizes="32x32" />
+  <link rel="icon" href="<%= image_path("favicon.png") %>" sizes="192x192" />
+  <link rel="apple-touch-icon" href="<%= image_path("favicon.png") %>" />
+  <meta name="msapplication-TileImage" content="<%= image_path("favicon.png") %>" />
 </head>
