@@ -1,0 +1,5 @@
+<%= link_to "</> See the code!", @entry.url, target: "_blank", style: "float: right; padding: 16px" %>
+
+<h1><%= @entry.name %> <small>by <%= @entry.author %> from <%= @entry.school %></small></h1>
+
+<iframe class="game-iframe" src="<%= @entry.iframe_url %>"></iframe>

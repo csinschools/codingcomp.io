@@ -1,3 +1,22 @@
 <h1>Look at all these entries so far!</h1>
 
-<%= render partial: "shared/lorem" %>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Author</th>
+      <th>School</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @entries.each do |submission| %>
+      <td><%= link_to submission.name, public_entry_path(submission) %></td>
+      <td><%= submission.author %></td>
+      <td><%= submission.school %></td>
+    <% end %>
+  </tbody>
+  <tfoot>
+
+  </tfoot>
+</table>
+<%  %>

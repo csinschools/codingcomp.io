@@ -16,6 +16,12 @@ class PagesController < ApplicationController
   end
 
   def entries
+    @entries = Submission.all
+  end
 
+  def entry
+    @entry = Submission.find(params[:submission_id])
+
+    render layout: "entry"
   end
 end
