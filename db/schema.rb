@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_04_111646) do
+ActiveRecord::Schema.define(version: 2020_10_25_052538) do
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer "score"
+    t.text "note"
+    t.integer "user_id"
+    t.integer "submission_id"
+  end
 
   create_table "submissions", force: :cascade do |t|
     t.text "name"
@@ -35,4 +42,6 @@ ActiveRecord::Schema.define(version: 2020_10_04_111646) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "ratings", "submissions"
+  add_foreign_key "ratings", "users"
 end

@@ -5,7 +5,7 @@ class SubmissionsController < ApplicationController
   # GET /submissions
   # GET /submissions.json
   def index
-    @submissions = Submission.all
+    @submissions = Submission.order("public, id desc")
   end
 
   # GET /submissions/1
@@ -20,6 +20,9 @@ class SubmissionsController < ApplicationController
 
   # GET /submissions/1/edit
   def edit
+    if @submission.ratings.where(user: current_user).none?
+      @submission.ratings.new(user: current_user)
+    end
   end
 
   # POST /submissions
@@ -49,7 +52,7 @@ class SubmissionsController < ApplicationController
   def update
     respond_to do |format|
       if @submission.update(submission_params)
-        format.html { redirect_to @submission, notice: 'Submission was successfully updated.' }
+        format.html { redirect_to submissions_path, notice: 'Submission was successfully updated.' }
         format.json { render :show, status: :ok, location: @submission }
       else
         format.html { render :edit }
@@ -78,7 +81,16 @@ class SubmissionsController < ApplicationController
     def submission_params
       allowed_params = [:name, :url, :author, :school, :public, :submitter_email]
       if user_signed_in?
-        allowed_params += [:public]
+        allowed_params += [
+          :public,
+          ratings_attributes: [
+            :id,
+            :user_id,
+            :submission_id,
+            :score,
+            :note
+          ]
+        ]
       end
       params.require(:submission).permit(allowed_params)
     end

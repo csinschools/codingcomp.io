@@ -11,36 +11,77 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :name %>
-    <%= form.text_area :name %>
+    <%= form.text_field :name, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :url %>
-    <%= form.text_area :url %>
+    <%= form.text_field :url, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :author %>
-    <%= form.text_area :author %>
+    <%= form.text_field :author, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :school %>
-    <%= form.text_area :school %>
+    <%= form.text_field :school, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :submitter_email %>
-    <%= form.text_area :submitter_email %>
+    <%= form.text_field :submitter_email, class: "form-control" %>
   </div>
 
   <% if user_signed_in? %>
-    <div class="field">
-      <%= form.label :public %>
-      <%= form.check_box :public %>
+    <hr/>
+    <div class="form-group">
+      <div class="form-check">
+        <%= form.check_box :public, class: "form-check-input" %>
+        <%= form.label :public, class: "form-check-label" %>
+      </div>
     </div>
+
+    <table class="table">
+      <thad>
+        <tr>
+          <th style="width: 200px">Judge</th>
+          <th style="width: 85px">Score</th>
+          <th>Note</th>
+        </tr>
+      </thad>
+      <%= form.fields_for :ratings do |rating_form| %>
+        <% if rating_form.object.user == current_user || rating_form.object.score.present? || rating_form.object.note.present? %>
+          <tr>
+            <td>
+              <%= rating_form.hidden_field :user_id %>
+              <%= rating_form.object.user.email %>
+            </td>
+            <td>
+              <div class="form-group">
+                <% if rating_form.object.user == current_user %>
+                  <%= rating_form.number_field :score, in: 0..10, step: 1, class: "form-control" %>
+                <% else %>
+                  <%= rating_form.object.score %>
+                <% end %>
+              </div>
+            </td>
+            <td>
+              <div class="form-group">
+                <% if rating_form.object.user == current_user %>
+                  <%= rating_form.text_field :note, class: "form-control" %>
+                <% else %>
+                  <%= rating_form.object.note %>
+                <% end %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
   <% end %>
 
   <div class="actions">
