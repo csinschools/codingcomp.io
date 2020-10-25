@@ -1,19 +1,8 @@
 class PagesController < ApplicationController
-  def main
-
-  end
-
-  def faq
-
-  end
-
-  def about
-
-  end
-
-  def rules
-
-  end
+  def main; end
+  def faq; end
+  def about; end
+  def rules; end
 
   def entries
     @entries = Submission.where(public: true)
