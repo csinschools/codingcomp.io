@@ -1,8 +1,13 @@
 class Submission < ApplicationRecord
-  has_many :ratings
+  has_many :ratings, dependent: :destroy
   accepts_nested_attributes_for :ratings
 
-  validates :url, uniqueness: true
+  validates :name, presence: true
+  validates :url, uniqueness: true, presence: true
+  validates :author, presence: true
+  validates :school, presence: true
+  validates :submitter_email, presence: true
+  validates :no_pii, acceptance: { message: "must be checked" }
 
   def iframe_url
     matches = url.match(/\/\/repl.it\/@(?<username>[^\/]+)\/(?<name>[^\/?&#]+)/)

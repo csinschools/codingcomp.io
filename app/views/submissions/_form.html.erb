@@ -1,42 +1,59 @@
 <%= form_with(model: submission, local: true) do |form| %>
   <% if submission.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(submission.errors.count, "error") %> prohibited this submission from being saved:</h2>
+    <div class="alert alert-danger" role="alert">
+      <div id="error_explanation">
+        <h3><%= pluralize(submission.errors.count, "error") %> prohibited this submission from being saved:</h3>
 
-      <ul>
-        <% submission.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% submission.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
   <div class="form-group">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: "form-control" %>
+    <%= form.label :name, "Name of our game" %>
+    <%= form.text_field :name, class: "form-control", placeholder: "Zurk II: The Wizard of Zzoborf", required: true %>
   </div>
 
   <div class="form-group">
-    <%= form.label :url %>
-    <%= form.text_field :url, class: "form-control" %>
+    <%= form.label :author, "Author's first name" %>
+    <%= form.text_field :author, class: "form-control", placeholder: "Ada Lovelace", required: true %>
   </div>
 
   <div class="form-group">
-    <%= form.label :author %>
-    <%= form.text_field :author, class: "form-control" %>
+    <%= form.label :school, "Author's school" %>
+    <%= form.text_field :school, class: "form-control", placeholder: "Turing Grammar", required: true %>
   </div>
 
   <div class="form-group">
-    <%= form.label :school %>
-    <%= form.text_field :school, class: "form-control" %>
+    <%= form.label :submitter_email, "Submitter's email (E.g. author or teacher's email)" %>
+    <%= form.email_field :submitter_email, class: "form-control", placeholder: "charles.babbage@babbage.edu", required: true %>
+    <small class="form-text text-muted">👉 We might need to contact you if something is wrong with your entry</small>
   </div>
 
   <div class="form-group">
-    <%= form.label :submitter_email %>
-    <%= form.text_field :submitter_email, class: "form-control" %>
+    <%= form.label :url, "Repl.it URL" %>
+    <%= form.url_field :url, class: "form-control", placeholder: "https://repl.it/@theponny/CSinSchools-Simple-Adventure-Game-Template-5", required: true %>
   </div>
 
-  <% if user_signed_in? %>
+  <% unless form.object.persisted? %>
+    <div class="form-group">
+      <div class="form-check">
+        <%= form.check_box :no_pii, class: "form-check-input" %>
+        <%=
+          form.label :no_pii,
+                     "I have checked that this game <strong>does not</strong> contain any <strong>Personally Identifiable Information</strong>".html_safe,
+                     class: "form-check-label",
+                     required: true
+        %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if user_signed_in? && form.object.persisted? %>
     <hr/>
     <div class="form-group">
       <div class="form-check">
@@ -85,6 +102,6 @@
   <% end %>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit(form.object.new_record? ? "Submit Entry!" : "Update", class: "btn btn-danger") %>
   </div>
 <% end %>

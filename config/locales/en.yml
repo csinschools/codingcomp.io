@@ -31,3 +31,9 @@
 
 en:
   hello: "Hello world"
+
+en:
+  activerecord:
+    attributes:
+      submission:
+        no_pii: "No Personally Identifiable Information box"
