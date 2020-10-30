@@ -1,6 +1,20 @@
 # README
 
-## Updating the app
+## Getting the app running
+
+### Get the app running
+
+TODO: lots of steps, probably
+
+`bundle exec rails s`
+
+### Seed the database
+
+`bundle exec rake db:seed`
+
+See db/seeds.rb for login details
+
+## Updating the app in production
 
 The app is currently running on Heroku.  To push the latest version up, run
 
