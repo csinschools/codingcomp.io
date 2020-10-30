@@ -28,6 +28,15 @@ end
     "school" => "TKIS",
     "public" => true,
     "submitter_email" => "john.sherwood.was.taken@gmail.com"
+  },
+  {
+    "name" => "A real whiz-bang example!",
+    "url" => "https://repl.it/@theponny/0403-My-Amazing-Story-John#main.py",
+    "author" => "Some Volunteer",
+    "school" => "TKIS",
+    "public" => true,
+    "submitter_email" => "john.sherwood.was.taken@gmail.com",
+    "round" => Submission::EXAMPLES
   }
 ].each do |submission_data|
   Submission.create(submission_data)

@@ -1,5 +1,5 @@
-<%= link_to "</> See the code!", @entry.url, target: "_blank", style: "float: right; padding: 16px" %>
+<%= link_to "</> See the code!", @submission.url, target: "_blank", style: "float: right; padding: 16px" %>
 
-<h1><%= @entry.name %> <small>by <%= @entry.author %> from <%= @entry.school %></small></h1>
+<h1><%= @submission.name %> <small>by <%= @submission.author %> from <%= @submission.school %></small></h1>
 
-<iframe class="game-iframe" src="<%= @entry.iframe_url %>"></iframe>
+<%= render partial: "shared/game_iframe", locals: { submission: @submission } %>

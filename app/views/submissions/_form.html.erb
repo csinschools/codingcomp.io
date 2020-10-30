@@ -20,7 +20,7 @@
 
   <div class="form-group">
     <%= form.label :author, "Author's first name" %>
-    <%= form.text_field :author, class: "form-control", placeholder: "Ada Lovelace", required: true %>
+    <%= form.text_field :author, class: "form-control", placeholder: "Ada", required: true %>
   </div>
 
   <div class="form-group">
@@ -39,7 +39,7 @@
     <%= form.url_field :url, class: "form-control", placeholder: "https://repl.it/@theponny/CSinSchools-Simple-Adventure-Game-Template-5", required: true %>
   </div>
 
-  <% unless form.object.persisted? %>
+  <% unless submission.persisted? %>
     <div class="form-group">
       <div class="form-check">
         <%= form.check_box :no_pii, class: "form-check-input" %>
@@ -53,13 +53,18 @@
     </div>
   <% end %>
 
-  <% if user_signed_in? && form.object.persisted? %>
+  <% if user_signed_in? && submission.persisted? %>
     <hr/>
     <div class="form-group">
       <div class="form-check">
         <%= form.check_box :public, class: "form-check-input" %>
         <%= form.label :public, class: "form-check-label" %>
       </div>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :round %>
+      <%= form.select :round, Submission::ROUNDS.invert, class: "form-control", required: true %>
     </div>
 
     <table class="table">
@@ -75,7 +80,7 @@
           <tr>
             <td>
               <%= rating_form.hidden_field :user_id %>
-              <%= rating_form.object.user.email %>
+              <%= rating_form.object.user.email.gsub(/@.+/, "") %>
             </td>
             <td>
               <div class="form-group">
@@ -102,6 +107,12 @@
   <% end %>
 
   <div class="actions">
-    <%= form.submit(form.object.new_record? ? "Submit Entry!" : "Update", class: "btn btn-danger") %>
+    <%= form.submit(submission.new_record? ? "Submit Entry!" : "Update", class: "btn btn-danger") %>
   </div>
+<% end %>
+
+<% if user_signed_in? && submission.persisted? %>
+  <hr/>
+  <h2>Live Preview</h2>
+  <%= render partial: "shared/game_iframe", locals: { submission: @submission } %>
 <% end %>

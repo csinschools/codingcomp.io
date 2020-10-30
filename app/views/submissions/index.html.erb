@@ -2,26 +2,40 @@
 
 <table class="table">
   <thead>
-    <tr>
-      <th style="width: 80px">Public</th>
-      <th>Name</th>
-      <th>Author</th>
-      <th style="width: 100px"></th>
-    </tr>
+  <tr>
+    <th style="width: 80px">Public</th>
+    <th style="width: 80px">Round</th>
+    <th>Name</th>
+    <th>Scores</th>
+    <th>Author</th>
+    <th style="width: 100px"></th>
+  </tr>
   </thead>
 
   <tbody>
-    <% @submissions.each do |submission| %>
-      <tr>
-        <td>
-          <% if submission.public? %>
-            <span class="badge badge-pill badge-success">Public</span>
+  <% @submissions.each do |submission| %>
+    <tr>
+      <td>
+        <% if submission.public? %>
+          <span class="badge badge-pill badge-success">Public</span>
+        <% end %>
+      </td>
+      <td>
+        <span class="badge badge-pill <%= submission_round_class(submission) %>"><%= Submission::ROUNDS[submission.round] %></span>
+      </td>
+      <td><%= link_to submission.name, edit_submission_path(submission) %></td>
+      <td>
+        <% submission.ratings.each do |rating| %>
+          <% unless rating.score.nil? %>
+            <div style="<%= "text-decoration: underline" if rating.user == current_user %>" title="<%= rating.note %>">
+              <%= rating.user.email.gsub(/@.+/, "") %>: <%= rating.score %>
+            </div>
           <% end %>
-        </td>
-        <td><%= link_to submission.name, edit_submission_path(submission) %></td>
-        <td><%= submission.author %></td>
-        <td><%= link_to 'Delete', submission, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+        <% end %>
+      </td>
+      <td><%= submission.author %></td>
+      <td><%= link_to 'Delete', submission, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
   </tbody>
 </table>

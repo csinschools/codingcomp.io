@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'pages#main'
   get '/about', to: 'pages#about'
-  get '/rules', to: 'pages#rules'
-  get '/faq', to: 'pages#faq'
+  get '/examples', to: 'pages#examples'
   get '/entries', to: 'pages#entries'
   get '/entries/:submission_id', to: 'pages#entry'
+  get '/repl-url-error', to: 'pages#repl_url_error'
 end

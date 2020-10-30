@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_25_052538) do
+ActiveRecord::Schema.define(version: 2020_10_30_125001) do
 
   create_table "ratings", force: :cascade do |t|
     t.integer "score"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2020_10_25_052538) do
     t.text "submitter_email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "round", default: "latest"
   end
 
   create_table "users", force: :cascade do |t|

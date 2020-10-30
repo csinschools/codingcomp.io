@@ -5,12 +5,7 @@ class SubmissionsController < ApplicationController
   # GET /submissions
   # GET /submissions.json
   def index
-    @submissions = Submission.order("public, id desc")
-  end
-
-  # GET /submissions/1
-  # GET /submissions/1.json
-  def show
+    @submissions = Submission.order("round desc, public, id desc").preload(:ratings, :users)
   end
 
   # GET /submissions/new
@@ -32,6 +27,8 @@ class SubmissionsController < ApplicationController
 
     respond_to do |format|
       if @submission.save
+        @submission.email_judges!(except: current_user)
+
         format.html do
           render :success, notice: "Submission was successfully created."
         end
@@ -79,6 +76,7 @@ class SubmissionsController < ApplicationController
       if user_signed_in?
         allowed_params += [
           :public,
+          :round,
           ratings_attributes: [
             :id,
             :user_id,

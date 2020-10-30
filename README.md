@@ -2,7 +2,7 @@
 
 ## Getting the app running
 
-### Get the app running
+### Start rails server
 
 TODO: lots of steps, probably
 
@@ -13,6 +13,9 @@ TODO: lots of steps, probably
 `bundle exec rake db:seed`
 
 See db/seeds.rb for login details
+
+### Preview the emails
+http://localhost:3000/rails/mailers/submission_mailer/new_submission
 
 ## Updating the app in production
 
