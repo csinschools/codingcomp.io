@@ -9,7 +9,7 @@
 (1..3).each do |i|
   email = "test#{i}@example.com"
   password = "password"
-  User.create(email: email, password: password, password_confirmation: password)
+  User.create(name: "test#{i}", email: email, password: password, password_confirmation: password)
 end
 
 [

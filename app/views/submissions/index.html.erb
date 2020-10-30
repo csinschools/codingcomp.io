@@ -28,7 +28,7 @@
         <% submission.ratings.each do |rating| %>
           <% unless rating.score.nil? %>
             <div style="<%= "text-decoration: underline" if rating.user == current_user %>" title="<%= rating.note %>">
-              <%= rating.user.email.gsub(/@.+/, "") %>: <%= rating.score %>
+              <%= rating.user.name %>: <%= rating.score %>
             </div>
           <% end %>
         <% end %>
