@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_30_141444) do
+ActiveRecord::Schema.define(version: 2021_03_30_091905) do
 
   create_table "ratings", force: :cascade do |t|
     t.integer "score"
@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 2020_10_30_141444) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "round", default: "latest"
+    t.text "submitter_name"
+    t.text "course"
   end
 
   create_table "users", force: :cascade do |t|

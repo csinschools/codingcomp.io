@@ -72,11 +72,12 @@ class SubmissionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def submission_params
-      allowed_params = [:name, :url, :author, :school, :public, :submitter_email, :no_pii]
+      allowed_params = [:name, :url, :author, :school, :public, :submitter_email, :submitter_name, :course, :no_pii]
       if user_signed_in?
         allowed_params += [
           :public,
           :round,
+
           ratings_attributes: [
             :id,
             :user_id,

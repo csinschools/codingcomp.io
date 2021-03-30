@@ -4,7 +4,7 @@ class Submission < ApplicationRecord
   accepts_nested_attributes_for :ratings
 
   validates :name, presence: true
-  validates :url, uniqueness: true, presence: true
+  validates :url, uniqueness: { message: "This url has already beeen submitted" }, presence: true
   validates :author, presence: true
   validates :school, presence: true
   validates :submitter_email, presence: true
@@ -14,6 +14,12 @@ class Submission < ApplicationRecord
   ROUNDS = {
     EXAMPLES = "example" => "Examples",
     LATEST = "latest" => "Latest"
+  }.freeze
+
+  COURSES = {
+    "intro" => "Introduction to Coding",
+    "inter" => "Intermediate Coding",
+    "proj1" => "Industry Project I"
   }.freeze
 
   def iframe_url
