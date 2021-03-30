@@ -1,6 +1,6 @@
 <footer class="bg-primary">
   <div class="text-center text-white">
-    2020 © CS in Schools · An initiative at RMIT University
+    <%= Time.now.year %> © CS in Schools · An initiative at RMIT University
 
     <% unless current_user %>
       <%= link_to "Judge Login", new_user_session_path %>

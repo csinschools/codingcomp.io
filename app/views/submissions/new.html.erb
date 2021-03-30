@@ -1,4 +1,6 @@
-<h1>CS in Schools Coding Competition Entry</h1>
+<% heading = "CS in Schools Coding Competition Entry" %>
+<%= content_for :title, heading%>
+<h1><%= heading %></h1>
 
 <%= render 'form', submission: @submission %>
 
