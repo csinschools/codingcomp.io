@@ -8,11 +8,13 @@
 
   <div class="collapse navbar-collapse" id="main-nav">
     <ul class="navbar-nav ml-auto">
+      <% if Submission.where(public: true, round: Submission::EXAMPLES).any? %>
+        <li class="nav-item">
+          <a class="nav-link" href="/examples">Examples</a>
+        </li>
+      <% end %>
       <li class="nav-item">
-        <a class="nav-link" href="/examples">Examples</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/entries">Current Entries</a>
+        <a class="nav-link" href="/entries">2021 Coding Competition Entries</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/about">About</a>

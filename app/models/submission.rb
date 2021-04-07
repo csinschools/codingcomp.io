@@ -17,9 +17,9 @@ class Submission < ApplicationRecord
   }.freeze
 
   COURSES = {
-    "intro" => "Introduction to Coding",
-    "inter" => "Intermediate Coding",
-    "proj1" => "Industry Project I"
+    "intro" => "Introduction to Coding (at year7.io)",
+    "inter" => "Intermediate Coding (at year8.io)",
+    "proj1" => "Industry Project I (at year9.io)"
   }.freeze
 
   def iframe_url
