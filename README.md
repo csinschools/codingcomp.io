@@ -4,7 +4,8 @@
 
 ### Start rails server
 
-TODO: lots of steps, probably
+TODO: lots of steps, probably.  
+Gotcha: current node-sass doesn't seem to work with node 16.  I've been using node 14.
 
 `bundle exec rails s`
 
