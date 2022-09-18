@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_18_061228) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_18_063735) do
   create_table "ratings", force: :cascade do |t|
     t.integer "score"
     t.text "note"
@@ -20,7 +20,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_18_061228) do
 
   create_table "submissions", force: :cascade do |t|
     t.text "name"
-    t.text "url"
     t.text "author"
     t.text "school"
     t.boolean "public"

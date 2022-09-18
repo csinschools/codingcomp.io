@@ -46,11 +46,6 @@ footer {
 .bg-primary {
   background-color: #27336b !important;
 }
-.game-iframe {
-  width: 100%;
-  height: 600px;
-  border: none;
-}
 .form-control::placeholder {
   color: #acb5bd;
 }
@@ -61,4 +56,5 @@ footer {
 
 textarea.code {
   font-family: monospace;
+  width: 100%;
 }

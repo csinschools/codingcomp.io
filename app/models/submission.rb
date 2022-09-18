@@ -26,16 +26,6 @@ class Submission < ApplicationRecord
     "proj1" => "Industry Project I (at year9.io)"
   }.freeze
 
-  def iframe_url
-    matches = url.match(/\/\/repl.it\/@(?<username>[^\/]+)\/(?<name>[^\/?&#]+)/)
-
-    username = matches[:username].downcase
-    name = matches[:name].downcase
-    "https://#{name}.#{username}.repl.run/"
-  rescue StandardError => e
-    "/repl-url-error?url=#{CGI.escape(url)}"
-  end
-
   def email_judges!(except:   nil)
     User.all.each do |user|
       next if except == user

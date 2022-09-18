@@ -1,5 +1,3 @@
-<%= link_to "</> See the code!", @submission.url, target: "_blank", style: "float: right; padding: 16px" %>
-
 <h1><%= @submission.name %> <small>by <%= @submission.author %> from <%= @submission.school %></small></h1>
 
-<%= render partial: "shared/game_iframe", locals: { submission: @submission } %>
+<textarea class="code" rows="30"readonly><%= @submission.upload %></textarea>
