@@ -4,12 +4,16 @@ class Submission < ApplicationRecord
   accepts_nested_attributes_for :ratings
 
   validates :name, presence: true
-  validates :url, uniqueness: { message: "This url has already beeen submitted" }, presence: true
+  validates :upload, uniqueness: { message: "A file exactly like this one has already beeen submitted" }, presence: true
   validates :author, presence: true
   validates :school, presence: true
   validates :submitter_email, presence: true
   validates :round, presence: true
   validates :no_pii, acceptance: { message: "must be checked" }
+
+  before_validation :set_uploaded_file_data
+
+  attr_accessor :upload_file
 
   ROUNDS = {
     EXAMPLES = "example" => "Examples",
@@ -22,21 +26,18 @@ class Submission < ApplicationRecord
     "proj1" => "Industry Project I (at year9.io)"
   }.freeze
 
-  def iframe_url
-    matches = url.match(/\/\/repl.it\/@(?<username>[^\/]+)\/(?<name>[^\/?&#]+)/)
-
-    username = matches[:username].downcase
-    name = matches[:name].downcase
-    "https://#{name}.#{username}.repl.run/"
-  rescue StandardError => e
-    "/repl-url-error?url=#{CGI.escape(url)}"
-  end
-
-  def email_judges!(except: nil)
+  def email_judges!(except:   nil)
     User.all.each do |user|
       next if except == user
 
       SubmissionMailer.with(user: user, submission: self).new_submission.deliver_later
     end
   end
+
+  private
+    def set_uploaded_file_data
+      if upload_file.present?
+        self.upload = upload_file.read
+      end
+    end
 end
