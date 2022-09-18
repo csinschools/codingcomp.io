@@ -54,3 +54,11 @@ footer {
 .form-control::placeholder {
   color: #acb5bd;
 }
+.form-control[type=file] {
+  border: none;
+  padding-left: 0;
+}
+
+textarea.code {
+  font-family: monospace;
+}
