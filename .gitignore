@@ -42,3 +42,6 @@ yarn-debug.log*
 
 # Rubymine settings
 .idea
+
+# MacOS
+.DS_Store
