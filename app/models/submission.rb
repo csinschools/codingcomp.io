@@ -4,7 +4,7 @@ class Submission < ApplicationRecord
   accepts_nested_attributes_for :ratings
 
   validates :name, presence: true
-  validates :upload, uniqueness: { message: "A file exactly like this one has already beeen submitted" }, presence: true
+  validates :upload, uniqueness: { message: "A file exactly like this one has already been submitted" }, presence: true
   validates :author, presence: true
   validates :school, presence: true
   validates :submitter_email, presence: true
