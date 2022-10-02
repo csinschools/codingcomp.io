@@ -9,6 +9,8 @@ class Submission < ApplicationRecord
   validates :school, presence: true
   validates :submitter_email, presence: true
   validates :round, presence: true
+  validates :classroom, presence: true
+  validates :course, presence: true
   validates :no_pii, acceptance: { message: "must be checked" }
 
   before_validation :set_uploaded_file_data
