@@ -24,7 +24,6 @@ class Submission < ApplicationRecord
 
   COURSES = {
     "intro" => "Introduction to Coding",
-    "inter" => "Intermediate Coding",
   }.freeze
 
   def email_judges!(except:   nil)
