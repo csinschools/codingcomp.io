@@ -55,7 +55,7 @@
 
   <div class="form-group">
     <%= form.label :course, "Course" %>
-    <%= form.select :course, Submission::COURSES.invert, { include_blank: true },{ required: true, class: "form-control" } %>
+    <%= form.select :course, Submission::COURSES.invert, { include_blank: !Submission.preselect_course? },{ required: !Submission.preselect_course?, class: "form-control" } %>
   </div>
 
   <% unless submission.persisted? %>
