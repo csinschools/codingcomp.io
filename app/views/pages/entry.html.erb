@@ -1,3 +1,46 @@
 <h1><%= @submission.name %> <small>by <%= @submission.author %> from <%= @submission.school %></small></h1>
 
-<textarea class="code" rows="30"readonly><%= @submission.upload %></textarea>
+<div id="consoleWrapper">
+  <pre id="console" onclick="if (inputElement != null) inputElement.focus();"><div id="consoleClear" onclick="clearConsole();" style="cursor: pointer;">X</div></pre>
+</div>
+<br/>
+<h2>Code</h2>
+<textarea id="code" rows="60" cols="80" readonly><%= @submission.upload %></textarea>
+
+<style media="all">
+    #consoleWrapper {
+        border: 10px solid #d3d3d3;
+        font-size: 10px;
+        width: 100%;
+        height: 600px;
+        overflow-y: auto;
+        overflow-x: auto;
+        background-color: #000;
+        position: relative;
+    }
+
+    #console {
+        margin: 0px 8px;
+    }
+
+    #consoleClear {
+        line-height: 12px;
+        width: 18px;
+        font-size: 8pt;
+        font-family: tahoma;
+        text-align: center;
+        position: sticky;
+        background: rgba(255, 255, 255, 0.7);
+        top: 1;
+        left: calc(100% - 18px);
+    }
+</style>
+<script>
+  jQuery(function () {
+    runSkulpt(document.getElementById('code').value);
+  })
+</script>
+
+<script src="/editor/skulpt.min.js"></script>
+<script src="/editor/skulpt-stdlib.js"></script>
+<script src="/editor/runner.js"></script>
