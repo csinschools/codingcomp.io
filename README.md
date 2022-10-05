@@ -21,7 +21,7 @@ http://localhost:3000/rails/mailers/submission_mailer/new_submission
 
 1. Install the heroku CLI (https://devcenter.heroku.com/articles/heroku-command-line)
 2. Log in to heroku: `heroku login`
-3. Add the branch to push to: `heroku git:remote --app  quiet-brook-55830`
+3. Add the branch to push to: `heroku git:remote --app  csinsc-codingcomp`
 4. Push the latest up: `git push heroku main`
 
 ## Creating a user
