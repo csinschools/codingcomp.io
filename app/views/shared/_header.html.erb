@@ -8,6 +8,15 @@
 
   <div class="collapse navbar-collapse" id="main-nav">
     <ul class="navbar-nav ml-auto">
+      <% if current_user %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle pull-right" href="#" id="user-actions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.name %></a>
+          <div class="dropdown-menu" aria-labelledby="user-actions">
+            <%= link_to "Manage Submissions", submissions_path, class: "dropdown-item" %>
+            <%= link_to "Logout", destroy_user_session_path, class: "dropdown-item", method: :delete %>
+          </div>
+        </li>
+      <% end %>
       <% if Submission.where(public: true, round: Submission::EXAMPLES).any? %>
         <li class="nav-item">
           <a class="nav-link" href="/examples">Examples</a>
@@ -23,16 +32,6 @@
       <li class="nav-item">
         <%= link_to "Enter!", new_submission_path, class: "btn btn-danger" %>
       </li>
-
-      <% if current_user %>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle pull-right" href="#" id="user-actions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.name %></a>
-          <div class="dropdown-menu" aria-labelledby="user-actions">
-            <%= link_to "Manage Submissions", submissions_path, class: "dropdown-item" %>
-            <%= link_to "Logout", destroy_user_session_path, class: "dropdown-item", method: :delete %>
-          </div>
-        </li>
-      <% end %>
     </ul>
   </div>
 </nav>

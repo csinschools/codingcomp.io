@@ -13,7 +13,7 @@ class PagesController < ApplicationController
   def entry
     @submission = Submission.find(params[:submission_id])
 
-    render layout: "entry"
+    render layout: "wide"
   end
 
   def repl_url_error
