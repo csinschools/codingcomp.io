@@ -127,10 +127,23 @@
     <div class="form-group">
       <%= form.label :upload_file, "Upload" %>
       <%= form.text_area :upload, required: true, rows: 20, class: "form-control code" %>
+      <input type="button" id="run-button" value="RUN!" class="btn btn-large btn-info" style="margin: 1rem 0;"/>
+      <%= javascript_tag do %>
+        $("#run-button").click(function(e) {
+          e.preventDefault();
+          var code = document.getElementsByClassName('code')[0].value
+          runSkulpt(code);
+          $("#console-container").show();
+        })
+      <% end %>
+      <div id="console-container" style="display: none;">
+        <%= render partial: "shared/console" %>
+      </div>
+      <%= render partial: "shared/editor_code" %>
     </div>
   <% end %>
 
   <div class="actions">
-    <%= form.submit(submission.new_record? ? "Submit Entry!" : "Update", class: "btn btn-danger") %>
+    <%= form.submit(submission.new_record? ? "Submit Entry!" : "Update", class: "btn btn-success") %>
   </div>
 <% end %>

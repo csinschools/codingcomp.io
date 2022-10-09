@@ -6,6 +6,7 @@ class SubmissionsController < ApplicationController
   # GET /submissions.json
   def index
     @submissions = Submission.order("round desc, public, id desc").preload(:ratings, :users)
+    render layout: "wide"
   end
 
   # GET /submissions/new
@@ -18,6 +19,7 @@ class SubmissionsController < ApplicationController
     if @submission.ratings.where(user: current_user).none?
       @submission.ratings.new(user: current_user)
     end
+    render layout: "wide"
   end
 
   # POST /submissions
