@@ -10,6 +10,9 @@
     <th>Name</th>
     <th>Scores</th>
     <th>Author</th>
+    <th>School</th>
+    <th>Teacher</th>
+    <th>Class</th>
     <th style="width: 100px"></th>
   </tr>
   </thead>
@@ -36,6 +39,9 @@
         <% end %>
       </td>
       <td><%= submission.author %></td>
+      <td><%= submission.school %></td>
+      <td><%= submission.submitter_email %></td>
+      <td><%= submission.classroom %></td>                  
       <td><%= link_to 'Delete', submission, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
