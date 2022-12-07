@@ -13,4 +13,8 @@ module SubmissionsHelper
       "badge-danger"
     end
   end
+
+  def anonymized_name(full_name)
+    full_name&.split(" ").first
+  end
 end

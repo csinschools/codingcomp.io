@@ -15,7 +15,7 @@
     <% entries.each do |submission| %>
       <tr>
         <td><%= link_to submission.name, public_entry_path(submission) %></td>
-        <td><%= submission.author %></td>
+        <td><%= anonymized_name(submission.author) %></td>
         <td><%= submission.school %></td>
       </tr>
     <% end %>
