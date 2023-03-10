@@ -8,14 +8,14 @@
     <tr>
       <th>Name</th>
       <th style="width: 150px">Author</th>
-      <th style="width: 150px">School</th>
+      <th style="width: 300px">School</th>
     </tr>
     </thead>
     <tbody>
     <% entries.each do |submission| %>
       <tr>
         <td><%= link_to submission.name, public_entry_path(submission) %></td>
-        <td><%= submission.author %></td>
+        <td><%= anonymized_name(submission.author) %></td>
         <td><%= submission.school %></td>
       </tr>
     <% end %>
