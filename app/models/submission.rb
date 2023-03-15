@@ -26,6 +26,17 @@ class Submission < ApplicationRecord
     "intro" => "Introduction to Coding"
   }.freeze
 
+  def initialize(attributes = nil)
+    super
+    if COURSES.size == 1
+      self.course = COURSES.keys.first
+    end
+  end
+
+  def self.preselect_course?
+    COURSES.size == 1
+  end
+
   def email_judges!(except:   nil)
     User.all.each do |user|
       next if except == user
